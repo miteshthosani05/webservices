@@ -1,0 +1,29 @@
+<xsd:schema xmlns:sdoJava="commonj.sdo/java" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/"
+     xmlns="http://xmlns.oracle.com/apps/hcm/hwr/coreService/" elementFormDefault="qualified"
+     sdoJava:package="oracle.apps.hcm.hwr.coreService">
+    <xsd:annotation>
+        <xsd:documentation xmlns:oer="http://xmlns.oracle.com/oer">
+            <name>Metric Response View Object</name>
+            <description>Metric Response view object for return values of metric api&apos;s of fusion</description>
+            <oer:attributes>
+                <oer:attribute name="CompletedItems" description="Completed Items is the response from metric api&apos;s"/>
+                <oer:attribute name="TimeStampofCompletion" description="TimeStampCollection returned by the api"/>
+            </oer:attributes>
+        </xsd:documentation>
+    </xsd:annotation>
+    <xsd:import schemaLocation="classpath:/xml/sdoJava.xsd" namespace="commonj.sdo/java"/>
+    <xsd:complexType name="MetricResponseServiceData">
+        <xsd:annotation>
+            <xsd:appinfo source="http://xmlns.oracle.com/adf/svc/metadata/">
+                <key xmlns="http://xmlns.oracle.com/adf/svc/metadata/">
+                    <attribute>CompletedItems</attribute>
+                </key>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="CompletedItems" type="xsd:long" minOccurs="0" nillable="true"/>
+            <xsd:element name="TimeStampofCompletion" type="xsd:string" minOccurs="0" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="metricResponseServiceData" type="MetricResponseServiceData"/>
+</xsd:schema>

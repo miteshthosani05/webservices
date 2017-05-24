@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:annotation-config />
+	
+	<bean id="easyMockControl" class="org.easymock.EasyMock" factory-method="createNiceControl" scope="prototype"/>
+	
+	<bean id="profileSyncInfoService" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value="oracle.apps.hcm.hwr.dataaccess.ProfileSyncInfoService"/>
+	</bean>
+	
+	<bean id="sourceService" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value="oracle.apps.hcm.hwr.dataaccess.SourceService"/>
+	</bean>
+	
+	<bean id="messageService" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value="oracle.apps.hcm.hwr.dataaccess.MessageService"/>
+	</bean>
+	
+	<bean id="userService" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value=" oracle.apps.hcm.hwr.domain.rewards.service.UserService"/>
+	</bean>
+	
+	<bean id="playerService" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value=" oracle.apps.hcm.hwr.domain.rewards.service.PlayerService"/>
+	</bean>
+	
+	<bean id="gamificationCredentialsProvider" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value="oracle.apps.grc.common.base.Provider"/>
+		<qualifier value="GamificationCredentials"/>
+	</bean>
+	
+	<bean id="gamificationObjectReferenceCacheProvider" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value="oracle.apps.grc.common.base.Provider"/>
+		<qualifier value="GamificationObjectReferenceCache"/>
+	</bean>
+	
+	<bean id="globalProfileService" factory-bean="easyMockControl" factory-method="createMock">
+		<constructor-arg value="oracle.apps.hcm.hwr.dataaccess.GlobalProfileService"/>
+	</bean>
+	
+	<bean id="hwrPublicService" class="oracle.apps.hcm.hwr.webservices.server.HWRPublicService"/>
+	
+</beans>

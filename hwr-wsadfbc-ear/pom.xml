@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+    http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+		<groupId>oracle.apps.hcm.hwr</groupId>
+		<artifactId>hwr-parent</artifactId>
+		<relativePath>../../hwr-parent</relativePath>
+		<version>5.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>hwr-wsadfbc-ear</artifactId>
+    <packaging>jar</packaging>
+    <name>hwr-adfbc-client</name>
+    <url>http://maven.apache.org</url>
+	<description>Oracle Workforce Reputation Management Web Services</description>
+    <repositories>
+        <repository>
+            <id>public</id>
+            <url>${repository.url.root}/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>LogicalApps internal remote maven repository</name>
+            <url>http://ballys.la.logicalapps.com:8082/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>snapshots</id>
+            <name>LogicalApps internal remote maven snapshot repository</name>
+            <url>http://ballys.la.logicalapps.com:8082/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencies>
+	   <dependency>
+        <groupId>oracle.apps.hcm.hwr</groupId>
+		<artifactId>WorkforceReputationPublicServiceCore</artifactId>
+		<classifier>ejb</classifier>
+		<type>ejb</type>
+        <version>${project.version}</version>
+      </dependency>
+	  <dependency>
+        <groupId>oracle.apps.hcm.hwr</groupId>
+		<artifactId>WorkforceReputationPublicServiceCore</artifactId>
+		<classifier>common</classifier>
+		<type>jar</type>
+        <version>${project.version}</version>
+      </dependency>
+	  <dependency>
+        <groupId>oracle.apps.hcm.hwr</groupId>
+		<artifactId>WorkforceReputationPublicServiceCore</artifactId>
+		<classifier>wsdl</classifier>
+		<type>jar</type>
+        <version>${project.version}</version>
+      </dependency>
+	  <dependency>
+			<groupId>oracle.apps.hcm.hwr</groupId>
+			<artifactId>hwr-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+    </dependencies>
+    <pluginRepositories>
+      <pluginRepository>
+	<id>codehaus snapshot repository</id>
+	<url>http://snapshots.repository.codehaus.org/</url>
+	<releases>
+	  <enabled>true</enabled>
+        </releases>
+      </pluginRepository>
+    </pluginRepositories>
+	
+    <build>
+      <!-- <finalName>grc-webservices-adf</finalName>-->
+      <plugins>
+        <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+			  <excludeScope>provided</excludeScope>
+              <outputDirectory>${project.build.directory}/dist/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>webserviceAdfEar</id>
+            <phase>package</phase>
+            <configuration>
+              <tasks>
+                <echo>Creating EAR file for the ADFBC</echo>
+                <property name="target.dist.dir"
+                          value="${project.build.directory}/dist"></property>
+				<mkdir dir="${target.dist.dir}/ear"></mkdir>
+				<mkdir dir="${target.dist.dir}/ear/lib"></mkdir>
+				<mkdir dir="${target.dist.dir}/ear/META-INF"></mkdir>
+				<copy todir="${target.dist.dir}/ear/META-INF">
+					<fileset dir="${basedir}/src/main/application/META-INF/">
+						<include name="**/**"></include>
+					</fileset>
+				</copy>
+				<mkdir dir="${target.dist.dir}/ear/hwr"></mkdir>				
+				<mkdir dir="${target.dist.dir}/ear/hwr/WEB-INF/"></mkdir>
+				<copy todir="${target.dist.dir}/ear/hwr/WEB-INF">
+					<fileset dir="${basedir}/src/main/resources/WEB-INF/">
+						<include name="**/**"></include>
+					</fileset>
+				</copy>
+				<unjar src="${target.dist.dir}/lib/WorkforceReputationPublicServiceCore-${project.version}-wsdl.jar"
+					dest="${target.dist.dir}/ear/hwr/WEB-INF/wsdl" overwrite="true"></unjar>
+				<delete file="${target.dist.dir}/lib/WorkforceReputationPublicServiceCore-${project.version}-wsdl.jar"></delete>	
+				<mkdir dir="${target.dist.dir}/ear/lib"></mkdir>
+				<move todir="${target.dist.dir}/ear">
+					<fileset dir="${project.build.directory}/dist/lib/">
+						<include name="**/*ejb.jar"></include>
+					</fileset>
+				</move>
+				<move todir="${target.dist.dir}/ear/lib">
+					<fileset dir="${project.build.directory}/dist/lib/">
+						 <include name="commons-dbcp-1.4.jar"></include>
+						 <include name="commons-logging-1.1.jar"></include>
+						 <include name="commons-logging-api-1.1.jar"></include>
+						 <include name="grc-common-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="grc-dataaccessfacade-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="grc-dataservices-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="grc-extensibility-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="grc-reasonerio-8.6.4.5-SNAPSHOT.jar"></include>
+						 
+						 <include name="grc-berkeley-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="je-4.1.20.jar"></include>
+						 <include name="grc-sdm-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="httpclient-4.0.1.jar"></include>
+						 <include name="httpcore-4.0.1.jar"></include>
+						 <include name="hwr-appservices-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-connector-common-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-dataaccess-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-domain-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-config-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-extwebclient-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-util-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-wsclient-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-wsserver-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-connector-common-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-connector-craigslist-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-connector-facebook-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-connector-foaf-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-connector-li-profiles-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-connector-twitter-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="hwr-scheduler-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="grc-sdm-8.6.4.5-SNAPSHOT-tests.jar"></include>
+						 <include name="grc-reasonerio-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="hwr-grc-proxy-5.0.0-SNAPSHOT.jar"></include>
+						 <include name="Je-4.1.20.jar"></include>
+						 <include name="grc-provenance-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="openrdf-sesame-2.2.4.jar"></include>
+						 <include name="quartz-1.6.5.jar"></include>
+						 <include name="grc-sdm-8.6.4.5-SNAPSHOT.jar"></include>
+						 <include name="quartz-oracle-1.6.5.jar"></include>
+						 <include name="lucene-core-3.6.0.jar"></include>
+						 <include name="lucene-facet-3.6.0.jar"></include>
+						 <include name="mail-1.4.jar"></include>
+						 <include name="metadata-extractor-2.4.0-beta-1.jar"></include>
+						 <include name="netcdf-4.2-min.jar"></include>
+						 <include name="odi-core-11.1.1.3.0.1.jar"></include>
+						 <include name="ojdbc6-11.1.0.7.0.jar"></include>
+						 <include name="openrdf-sesame-2.2.4.jar"></include>
+						 <include name="oracle-ucm-ridc-11.1.1.jar"></include>
+						 <include name="orai18n-11.1.0.7.0.jar"></include>
+						 <include name="oro-2.0.8.jar"></include>
+						 <include name="signpost-commonshttp4-1.2.1.2.jar"></include>
+						 <include name="signpost-core-1.2.1.2.jar"></include>
+						 <include name="spring-aop-2.5.6.jar"></include>
+						 <include name="spring-beans-2.5.6.jar"></include>
+						 <include name="spring-context-2.5.6.jar"></include>
+						 <include name="spring-core-2.5.6.jar"></include>
+						 <include name="spring-jdbc-2.5.6.jar"></include>
+						 <include name="spring-tx-2.5.6.jar"></include>
+						 <include name="spring-web-2.5.6.jar"></include>
+ 						 <include name="WorkforceReputationPublicServiceCore-5.0.0-SNAPSHOT-common.jar"></include>
+ 						 <include name="commons-codec-1.3.jar"></include>
+ 						 <include name="grc-scheduler-8.6.4.5-SNAPSHOT.jar"></include>
+ 						 <include name="grc-config-8.6.4.5-SNAPSHOT.jar"></include>
+ 						 <include name="commons-lang-2.2.jar"></include>
+ 						 <include name="log4j-1.2.14.jar"></include>
+ 						 <include name="logkit-1.0.1.jar"></include>
+ 						 <include name="commons-codec-1.3.jar"></include>
+ 						 <include name="commons-configuration-1.4.jar"></include>
+ 						 <include name="commons-configuration-1.4.jar"></include>
+ 						 <include name="commons-dbcp-1.4.jar"></include>
+ 						 <include name="commons-logging-1.1.jar"></include>
+ 						 <include name="commons-logging-api-1.1.jar"></include>
+ 						 <!--
+ 						 <include name="ApplCoreStub-Model-1.0.jar"></include>
+ 						 <include name="ApplCoreStub-View-1.0.jar"></include>	
+ 						 <include name="Common-Model-11.1.1.6.0.jar"></include>
+ 						 -->
+
+					</fileset>
+				</move>
+				<copy todir="${target.dist.dir}/ear/lib">
+					<fileset dir="${basedir}/src/main/resources/">
+						<include name="**/*adf-loc.jar"></include>
+					</fileset>
+				</copy>
+				<mkdir dir="${target.dist.dir}/ear/adf"></mkdir>
+				<copy todir="${target.dist.dir}/ear/adf">
+					<fileset dir="${basedir}/src/main/resources/adf/">
+						<include name="**/**"></include>
+					</fileset>
+				</copy>						
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+       <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-5</version>
+        <executions>
+          <execution>
+            <id>make-assembly-ear</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+				<appendAssemblyId>false</appendAssemblyId>
+				<archiverConfig>
+					<appxml>${basedir}/src/main/resources/application.xml</appxml>
+				</archiverConfig>
+              <descriptors>
+                <descriptor>hwr-service-package-ear.xml</descriptor>
+              </descriptors>
+              <archive>
+                <addMavenDescriptor>false</addMavenDescriptor>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      </plugins>
+    </build>
+    
+</project>

@@ -1,0 +1,18 @@
+<assembly>
+	<id>ear</id>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<formats>
+		<format>ear</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>${project.build.directory}/dist/ear</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>**/**</include>
+			</includes>
+			<excludes>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</assembly>

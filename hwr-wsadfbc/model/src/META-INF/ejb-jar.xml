@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ejb-jar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd"
+         version="3.0" xmlns="http://java.sun.com/xml/ns/javaee">
+  <enterprise-beans>
+    <session>
+      <ejb-name>oracle.apps.hcm.hwr.coreService.WorkforceReputationServiceBean</ejb-name>
+      <resource-ref>
+        <res-ref-name>jdbc/ApplicationServiceDBDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+      </resource-ref>
+    </session>
+    <session>
+      <ejb-name>oracle.apps.hcm.hwr.coreService.WorkforceReputationMetricServiceBean</ejb-name>
+      <resource-ref>
+        <res-ref-name>jdbc/ApplicationServiceDBDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+      </resource-ref>
+    </session>
+  </enterprise-beans>
+  <interceptors>
+      <interceptor>
+        <interceptor-class>oracle.security.jps.ee.ejb.JpsInterceptor</interceptor-class>
+        <env-entry>
+          <env-entry-name>application.name</env-entry-name>
+          <env-entry-type>java.lang.String</env-entry-type>
+          <env-entry-value>HcmWorkforceReputation</env-entry-value>
+          <injection-target>
+            <injection-target-class>oracle.security.jps.ee.ejb.JpsInterceptor</injection-target-class>
+            <injection-target-name>application_name</injection-target-name>
+          </injection-target>
+        </env-entry>
+      </interceptor>
+  </interceptors>
+  <assembly-descriptor>
+      <interceptor-binding>
+        <ejb-name>*</ejb-name>
+        <interceptor-class>oracle.security.jps.ee.ejb.JpsInterceptor</interceptor-class>
+      </interceptor-binding>
+  </assembly-descriptor>
+
+</ejb-jar>

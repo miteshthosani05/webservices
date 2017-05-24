@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<weblogic-ejb-jar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.bea.com/ns/weblogic/weblogic-ejb-jar http://www.bea.com/ns/weblogic/weblogic-ejb-jar/1.0/weblogic-ejb-jar.xsd"
+                  xmlns="http://www.bea.com/ns/weblogic/weblogic-ejb-jar">
+  <weblogic-enterprise-bean>
+    <ejb-name>oracle.apps.hcm.hwr.coreService.WorkforceReputationServiceBean</ejb-name>
+    <stateless-session-descriptor>
+      <pool>
+        <initial-beans-in-free-pool>2</initial-beans-in-free-pool>
+      </pool>
+    </stateless-session-descriptor>
+    <enable-call-by-reference>true</enable-call-by-reference>
+  </weblogic-enterprise-bean>
+  <weblogic-enterprise-bean>
+    <ejb-name>oracle.apps.hcm.hwr.coreService.WorkforceReputationMetricServiceBean</ejb-name>
+    <stateless-session-descriptor>
+      <pool>
+        <initial-beans-in-free-pool>2</initial-beans-in-free-pool>
+      </pool>
+    </stateless-session-descriptor>
+    <enable-call-by-reference>true</enable-call-by-reference>
+  </weblogic-enterprise-bean>
+</weblogic-ejb-jar>

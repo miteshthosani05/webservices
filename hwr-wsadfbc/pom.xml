@@ -1,0 +1,361 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>WorkforceReputationPublicServiceCore</artifactId>
+  <packaging>jar</packaging>
+  <description>Oracle Workforce Reputation Management Core Service</description>
+  <parent>
+    <groupId>oracle.apps.hcm.hwr</groupId>
+    <artifactId>hwr-parent</artifactId>
+    <relativePath>../../hwr-parent</relativePath>
+    <version>5.0.0-SNAPSHOT</version>
+  </parent>
+  <properties>
+	<project.name>WorkforceReputationPublicServiceCore</project.name>
+  </properties>
+  <build>
+    <sourceDirectory>model/src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>model/src</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+			<excludeScope>provided</excludeScope>
+              		<outputDirectory>${basedir}/lib</outputDirectory>
+              		<overWriteReleases>true</overWriteReleases>
+	      		<overWriteSnapshots>true</overWriteSnapshots>
+		        <overWriteIfNewer>true</overWriteIfNewer>
+		        <excludeTransitive>false</excludeTransitive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>webserviceAdfEar</id>
+            <phase>package</phase>
+            <configuration>
+              <tasks>
+                <echo>Creating EAR file for the ADFBC</echo>
+                <echo>${settings.localRepository}</echo>
+                <echo>${project.name}</echo>
+                <echo message="local repository  = ${settings.localRepository}"></echo>
+                <mkdir dir="${project.build.directory}/dist"></mkdir>
+                <property name="target.dist.dir"
+                          value="${project.build.directory}/dist"></property>
+				<echo>Preparing Common Data For EJB and WEB Modules</echo>
+				<mkdir dir="${target.dist.dir}/common"></mkdir>
+				 <copy todir="${target.dist.dir}/common">
+                  <fileset dir="${project.build.directory}/classes">
+					<exclude name="**/WEB-INF/**"></exclude>
+                    <include name="**/*wsdl"></include>
+					<include name="**/*xsd"></include>
+					<include name="**/*sdo"></include>
+					<include name="**/*Service.class"></include>
+                  </fileset>
+                </copy>
+                <echo>Data For EJB Jar Prepared !!</echo>
+                <echo>Preparing Data For EJB Jar</echo>
+                <mkdir dir="${target.dist.dir}/ejb"></mkdir>
+                <copy todir="${target.dist.dir}/ejb">
+                  <fileset dir="${project.build.directory}/classes">
+                    <exclude name="**/WEB-INF/**"></exclude>
+                    <exclude name="**/*java"></exclude>
+                  </fileset>
+                </copy>
+                <echo>Data For EJB Jar Prepared !!</echo>
+                <echo>Preparing Wsdl Jar</echo>
+                <mkdir dir="${target.dist.dir}/wsdl"></mkdir>
+                <copy todir="${target.dist.dir}/wsdl">
+                  <fileset dir="${project.build.directory}/classes/">
+					<include name="**/*wsdl"></include>
+                    <include name="**/*xsd"></include>
+                  </fileset>
+                </copy>
+                <echo>Wsdl files are moved.</echo>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+       <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${maven-assembly-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>make-assembly-common</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>hwr-service-package-common.xml</descriptor>
+              </descriptors>
+              <archive>
+                <addMavenDescriptor>false</addMavenDescriptor>
+              </archive>
+            </configuration>
+          </execution>
+          <execution>
+            <id>make-assembly-ejb</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>hwr-service-package-ejb.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+          <execution>
+            <id>make-assembly-wsdl</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>hwr-service-package-wsdl.xml</descriptor>
+              </descriptors>
+              <archive>
+                <addMavenDescriptor>false</addMavenDescriptor>
+              </archive>
+              <classifier>client</classifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>oracle.apps.fnd</groupId>
+      <artifactId>Common-Model</artifactId>
+      <version>11.1.1.6.0</version>
+    </dependency>
+	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>jdeveloper.jlib</groupId>
+      <artifactId>bundleresolver</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+	<dependency>
+		<groupId>oracle.adf</groupId>
+		<artifactId>adfm</artifactId>
+		<scope>provided</scope>
+	</dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-share-ca</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-share-support</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-share-base</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-share-security</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-faces-databinding-rt</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-controller</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-pageflow-fwk</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adf-pageflow-impl</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adfbcsvc</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>adfbcsvc-share</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.adf</groupId>
+      <artifactId>dvt-faces</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.as</groupId>
+      <artifactId>jmxframework</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.j2ee</groupId>
+      <artifactId>wsclient</artifactId>
+      <version>${adfm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commonj</groupId>
+      <artifactId>sdo</artifactId>
+      <version>2.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.help</groupId>
+      <artifactId>help-share</artifactId>
+      <version>5.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.bpel</groupId>
+      <artifactId>bpm-services</artifactId>
+      <version>1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>2.1.3</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.quartz</groupId>
+      <artifactId>quartz-all</artifactId>
+      <version>1.6.6</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2</groupId>
+      <artifactId>easybeans-uberjar-eclipselink</artifactId>
+      <version>1.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.j2ee</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>5.0.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>xml</artifactId>
+      <version>1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.bea.core.weblogic.security</groupId>
+      <artifactId>wls</artifactId>
+      <version>1.0.0.0.5.2.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.bea</groupId>
+      <artifactId>com.bea.core.weblogic.security</artifactId>
+      <version>1.6.0_14</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>odi</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>1.5.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.2.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>oracle.apps.hcm.hwr</groupId>
+      <artifactId>hwr-domain</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>oracle.apps.hcm.hwr</groupId>
+      <artifactId>hwr-wsserver</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>oracle.apps.hcm.hwr</groupId>
+      <artifactId>hwr-grc-proxy</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+	</dependency>
+     <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+	</dependency>  
+	<dependency>
+		<groupId>oracle.apps.fnd.applcore</groupId>
+			<artifactId>ApplCoreStub-Model</artifactId>
+			<version>1.0</version> 
+		</dependency>
+		<dependency>
+			<groupId>oracle.apps.fnd.applcore</groupId>
+			<artifactId>ApplCoreStub-View</artifactId> 
+			<version>1.0</version> 
+		</dependency>
+		
+    </dependencies>
+</project>
+
+
+
+
+

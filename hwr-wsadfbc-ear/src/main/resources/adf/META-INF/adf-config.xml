@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<adf-config xmlns="http://xmlns.oracle.com/adf/config" xmlns:config="http://xmlns.oracle.com/bc4j/configuration" xmlns:adf="http://xmlns.oracle.com/adf/config/properties" xmlns:sec="http://xmlns.oracle.com/adf/security/config" xmlns:pe="http://xmlns.oracle.com/adf/pageeditor/config">
+
+  <adfm:adf-adfm-config xmlns:adfm="http://xmlns.oracle.com/adfm/config" xmlns:mdsC="http://xmlns.oracle.com/adf/mds/config" xmlns:mds="http://xmlns.oracle.com/mds/config" xmlns:wpsC="http://xmlns.oracle.com/webcenter/framework/service">
+<adfm:defaults useBindVarsForViewCriteriaLiterals="true" rowLimit="500">
+<adfm:amconfig-defaults>
+<config:AM-Pooling jbo.dofailover="true"/>
+</adfm:amconfig-defaults>
+</adfm:defaults>
+<adfm:startup>
+<adfm:amconfig-overrides>
+<config:Database jbo.locking.mode="optimistic"/>
+</adfm:amconfig-overrides>
+</adfm:startup>
+</adfm:adf-adfm-config>
+  <adf:adf-properties-child xmlns="http://xmlns.oracle.com/adf/config/properties">
+    <adf-property name="adfAppUID" value="HcmWorkforceReputation.oracle.apps.hcm.hwr"/>
+    <adf-property name="partition_customizations_by_application_id" value="true"/>    
+  </adf:adf-properties-child>
+  <sec:adf-security-child xmlns="http://xmlns.oracle.com/adf/security/config">
+    <CredentialStoreContext credentialStoreClass="oracle.adf.share.security.providers.jps.CSFCredentialStore" credentialStoreLocation="../../src/META-INF/jps-config.xml"/>
+    <sec:JaasSecurityContext initialContextFactoryClass="oracle.adf.share.security.JAASInitialContextFactory" jaasProviderClass="oracle.adf.share.security.providers.jps.JpsSecurityContext" dataSecurityProviderClass="oracle.apps.fnd.applcore.dataSecurity.util.FndDataSecurityProvider" authorizationEnforce="true" authenticationRequire="true"/>
+  </sec:adf-security-child>
+  <adf-controller-config xmlns="http://xmlns.oracle.com/adf/controller/config">
+    <!-- For the failover support -->
+    <adf-scope-ha-support>true</adf-scope-ha-support>
+  </adf-controller-config>  
+  <mdsC:adf-mds-config xmlns:adfm="http://xmlns.oracle.com/adfm/config" xmlns:mdsC="http://xmlns.oracle.com/adf/mds/config" xmlns:mds="http://xmlns.oracle.com/mds/config" xmlns:wpsC="http://xmlns.oracle.com/webcenter/framework/service">
+<mds:mds-config version="11.1.1.000">
+<mds:persistence-config>
+<mds:metadata-namespaces>
+<mds:namespace metadata-store-usage="WebCenterFileMetadataStore" path="/xliffBundles/"/>
+<mds:namespace metadata-store-usage="WebCenterFileMetadataStore" path="/resourcebundles/"/>
+<mds:namespace metadata-store-usage="WebCenterFileMetadataStore" path="/oracle/apps/meta"/>
+<mds:namespace metadata-store-usage="WebCenterFileMetadataStore" path="/oracle/apps/menu"/>
+<mds:namespace metadata-store-usage="WebCenterFileMetadataStore" path="/oracle/rules"/>
+<mds:namespace metadata-store-usage="metadata-from-hosting-app" path="/oracle/apps/ess"/>
+</mds:metadata-namespaces>
+<mds:metadata-store-usages>
+<mds:metadata-store-usage id="metadata-from-hosting-app">
+<mds:metadata-store class-name="oracle.mds.persistence.stores.file.FileMetadataStore">
+<mds:property value=".." name="metadata-path"/>
+</mds:metadata-store>
+</mds:metadata-store-usage>
+<mds:metadata-store-usage default-cust-store="true" deploy-target="true" id="WebCenterFileMetadataStore">
+<mds:metadata-store class-name="oracle.mds.persistence.stores.db.DBMetadataStore">
+<mds:property value="mds-ApplicationMDSDB" name="repository-name"/>
+<mds:property value="WebCenterFileMetadataStore" name="partition-name"/>
+<mds:property value="jdbc/mds/mds-ApplicationMDSDBDS" name="jndi-datasource"/>
+</mds:metadata-store>
+</mds:metadata-store-usage>
+</mds:metadata-store-usages>
+<mds:auto-purge seconds-to-live="3600"/>
+</mds:persistence-config>
+<mds:cust-config>
+<mds:match path="/">
+<mds:customization-class name="oracle.apps.fnd.applcore.customization.GlobalCC"/>
+<mds:customization-class name="oracle.apps.fnd.applcore.customization.SiteCC"/>
+<mds:customization-class name="oracle.apps.fnd.applcore.customization.EnterpriseCC"/>
+<mds:customization-class name="oracle.apps.fnd.applcore.customization.UserCC"/>
+</mds:match>
+</mds:cust-config>
+</mds:mds-config>
+</mdsC:adf-mds-config>
+  <adf-resourcebundle-config xmlns="http://xmlns.oracle.com/adf/resourcebundle/config">
+    <!--
+      Customization Support: Fusion Apps override bundle setting
+    -->
+    <applicationBundleName>oracle/apps/resourcebundles/xliffBundle/FusionAppsOverrideBundle</applicationBundleName>
+    <bundleList>
+      <bundleId override="true">oracle.adf.view.page.editor.resource.ComposerOverrideBundle</bundleId>
+    </bundleList>
+  </adf-resourcebundle-config>
+  <pe:page-editor-config xmlns="http://xmlns.oracle.com/adf/pageeditor/config">
+    <!--
+      Customization Support: Adding addon-panels, session-options-factory and resource-string-editor for Composer Customization
+    -->
+    <addon-panels>
+      <addon-panel name="oracle.adf.pageeditor.addonpanels.page-settings" rendered="false"/>
+    </addon-panels>
+    <session-options-factory>oracle.apps.fnd.applcore.customization.uiPublic.ApplCoreSessionOptionsFactoryImpl</session-options-factory>
+    <resource-string-editor>
+      <enabled>#{GlobalAreaBackingBean.tipLayerNonUser}</enabled>
+    </resource-string-editor>
+    <pe:enable-source-view>#{GlobalAreaBackingBean.tipLayerNonUser}</pe:enable-source-view>
+  </pe:page-editor-config>
+  <adf-faces-config xmlns="http://xmlns.oracle.com/adf/faces/config">
+    <!--
+      Customization Support: configure persistent change manager
+    -->
+    <persistent-change-manager>
+      <persistent-change-manager-class>
+        oracle.adf.view.rich.change.MDSDocumentChangeManager
+      </persistent-change-manager-class>
+      <!--
+        Required for Customization Only a few components with properties should be persisted
+      -->
+    </persistent-change-manager>
+    <taglib-config>
+      <taglib uri="http://xmlns.oracle.com/adf/faces/customizable">
+        <tag name="showDetailFrame">
+          <attribute name="expansionMode">
+            <persist-changes>true</persist-changes>
+          </attribute>
+          <attribute name="contentStyle">
+            <persist-changes>true</persist-changes>
+          </attribute>
+        </tag>
+        <tag name="panelCustomizable">
+          <persist-operations>all</persist-operations>
+        </tag>
+      </taglib>
+      <taglib uri="http://xmlns.oracle.com/adf/pageeditor">
+        <tag name="layoutCustomizable">
+          <persist-operations>all</persist-operations>
+          <attribute name="type">
+            <persist-changes>true</persist-changes>
+          </attribute>
+        </tag>
+      </taglib>
+      <taglib uri="http://xmlns.oracle.com/adf/faces/portlet">
+        <tag name="portlet">
+          <attribute name="expansionMode">
+            <persist-changes>true</persist-changes>
+          </attribute>
+        </tag>
+      </taglib>
+    </taglib-config>
+  </adf-faces-config>
+</adf-config>

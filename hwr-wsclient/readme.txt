@@ -1,0 +1,2 @@
+#The following command generates the Stubs for the Webservice Client
+wsimport -s src/main/java -keep -verbose -b jaxb-bindings.xml.txt http://adc2103005.us.oracle.com:7101/hwr/WorkforceReputationPublicService?wsdl -d target

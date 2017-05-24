@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="WorkforceReputationPublicServiceCore"
+  Version="11.1.1.65.21"
+  SeparateXMLFiles="true"
+  PackageName="oracle.apps.hcm.hwr.coreService"
+  ExportIntfPackage="..">
+  <DesignTime>
+    <Attr Name="_jprName"
+      Value="../../../../../../WorkforceReputationPublicServiceCore.jpr"/>
+    <Attr Name="_appModuleNames0"
+      Value="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM"/>
+    <Attr Name="_NamedConnection" Value="ApplicationDB"/>
+    <Attr Name="_appModuleNames1"
+      Value="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM"/>
+    <Attr Name="_jbo.TypeMapEntries" Value="oracle.apps.fnd.applcore.oaext.typemap.OATypeMapEntries"/>
+  </DesignTime>
+  <Containee
+    Name="applicationModule"
+    PackageName="oracle.apps.hcm.hwr.coreService.applicationModule"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="view"
+    PackageName="oracle.apps.hcm.hwr.coreService.view"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.applications.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="Applications-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.calendar.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="GregorianCalendar-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.diagnostics.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="DiagnosticsMBean-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.tags.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="Tags-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.audit.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="Audit-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.favRecentItems.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="FavRecentItems-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.changeNotification.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="ChangeNotification-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.analytics.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="Analytics-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.sandbox.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="Sandbox-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="Model"
+    FullName="oracle.apps.fnd.applcore.dataSecurity.model.Model"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="DataSecurity-Model.jar"/>
+    </DesignTime>
+  </AppContainee>
+</JboProject>

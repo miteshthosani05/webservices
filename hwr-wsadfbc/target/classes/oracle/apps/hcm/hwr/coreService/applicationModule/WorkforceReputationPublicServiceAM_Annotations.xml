@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AMAnnotations SYSTEM "jbo_03_01.dtd">
+<!---->
+<AMAnnotations
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="WorkforceReputationPublicServiceAM_Annotations"
+  Version="11.1.1.65.30"
+  Lifecycle="Active"
+  Compatibility="Supported - Backward Compatibility Assured"
+  Description="Workforce Reputation Service">
+  <OperationAnnotations
+    Name="updateJobProgress"
+    Lifecycle="Active"
+    Description="To update job progress">
+    <ParameterAnnotations
+      Name="JobId"
+      Description="JobId that needs to be updated"/>
+    <ParameterAnnotations
+      Name="return"
+      Description="Serialized response"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="mergePersonaSyncData"
+    Lifecycle="Active"
+    Description="To merge persona sync data">
+    <ParameterAnnotations
+      Name="return"
+      Description="Serilaized response"/>
+    <ParameterAnnotations
+      Name="PersonaSyncdata"
+      Description="Persona sync data"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="searchUserToEndorse"
+    Description="Search User to Endorse"
+    Lifecycle="Active">
+    <ParameterAnnotations
+      Name="return"
+      Description="User to Endorse"/>
+    <ParameterAnnotations
+      Name="pSearchCriteria"
+      Description="Search Criteria"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="initializeWLA"
+    Lifecycle="Active"
+    Description="To intialize WLA">
+    <ParameterAnnotations
+      Name="return"
+      Description="Serilaized response"/>
+    <ParameterAnnotations
+      Name="initializationInformation"
+      Description="Details required to intialize WLA"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="pollForJob"
+    Lifecycle="Active"
+    Description="To poll for a job">
+    <ParameterAnnotations
+      Name="WLA"
+      Description="Details required to poll for job"/>
+    <ParameterAnnotations
+      Name="return"
+      Description="Serialized reponse"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="writeConnectorData"
+    Lifecycle="Active"
+    Description="To write conncetor data">
+    <ParameterAnnotations
+      Name="DataWriter"
+      Description="Data writer"/>
+    <ParameterAnnotations
+      Name="return"
+      Description="Serialized reponse"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="registerUser"
+    Lifecycle="Active"
+    Description="To register a user">
+    <ParameterAnnotations
+      Name="return"
+      Description="Returns serialized string"/>
+    <ParameterAnnotations
+      Name="PersonaSyncdata"
+      Description="Persona sync data of user"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="getUserToEndorse"
+    Description="Get Uset to Endorse"
+    Lifecycle="Active">
+    <ParameterAnnotations
+      Name="pGlobalProfileIds"
+      Description="Global Profiel ID"/>
+    <ParameterAnnotations
+      Name="return"
+      Description="Return User"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="EndorseUser"
+    Description="To endorse a User"
+    Lifecycle="Active">
+    <ParameterAnnotations
+      Name="pEndorsement"
+      Description="Endorsement"/>
+    <ParameterAnnotations
+      Name="return"
+      Description="Endorsement User"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="getMyEndorsements"
+    Description="Get My Endorsements"
+    Lifecycle="Active">
+    <ParameterAnnotations
+      Name="pGlobalProfileId"
+      Description="Global Profile ID"/>
+    <ParameterAnnotations
+      Name="return"
+      Description="Return Endorsements"/>
+  </OperationAnnotations>
+  <OperationAnnotations
+    Name="getUserProfile"
+    Lifecycle="Active"
+    Description="To get user profile">
+    <ParameterAnnotations
+      Name="profileInformation"
+      Description="Profile inforamaton"/>
+    <ParameterAnnotations
+      Name="return"
+      Description="Serilaized response"/>
+  </OperationAnnotations>
+</AMAnnotations>

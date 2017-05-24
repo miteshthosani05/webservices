@@ -1,0 +1,743 @@
+<wsdl:definitions
+     name="WorkforceReputationMetricService"
+     targetNamespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:errors="http://xmlns.oracle.com/adf/svc/errors/"
+     xmlns:orafault="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/apps/hcm/hwr/coreService/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:types="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/"
+    >
+    <wsdl:documentation xmlns:oer="http://xmlns.oracle.com/oer">
+        <name>Workforce Reputation Metric Service</name>
+        <description>Workforce Reputation Metric Service</description>
+        <docCategories>
+            <category>None</category>
+        </docCategories>
+        <oer:lifecycle>Active</oer:lifecycle>
+        <oer:compatibility>Supported - Backward Compatibility Assured</oer:compatibility>
+        <oer:operation name="getRegisteredEmployeeCount">
+            <description>To get the count of registered users</description>
+            <oer:lifecycle>Active</oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="count of users"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getProfilesAddedCount">
+            <description>To get the profiles count</description>
+            <oer:lifecycle>Active</oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="count of added profiles upto the date specified."/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getPostsAnalyzedCount">
+            <description>To get the no. of posts analyzed</description>
+            <oer:lifecycle>Active</oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of posts analyzed on a date"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getIssuesCount">
+            <description>To get the no. of issues reported on a date</description>
+            <oer:lifecycle>Active</oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of posts having issues"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getEmployeesAddedCount">
+            <description>To get the no. of employees added on a day</description>
+            <oer:lifecycle>Active</oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of employees added"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getCandidatesAddedCount">
+            <description>To get the candidates added count</description>
+            <oer:lifecycle>Active</oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of candidates"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getHWRRegisteredEmployeeCount">
+            <description>To get the count of registered users</description>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of users"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getHWRProfilesAddedCount">
+            <description>To get Profiles Added Count</description>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of profiles added"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getHWRPostsAnalyzedCount">
+            <description>To get the  posts analysed count</description>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of Posts analysed"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getHWRIssuesCount">
+            <description>To get the issues count</description>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of issues"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getHWREmployeesAddedCount">
+            <description>To get the Employee added count</description>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of employees"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getHWRCandidatesAddedCount">
+            <description>To get Candidate Added Count</description>
+            <oer:parameters>
+                <oer:parameter name="pTimePeriod" description="Time Period"/>
+                <oer:return description="Count of Candidate"/>
+            </oer:parameters>
+        </oer:operation>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="WorkforceReputationMetricService">
+        <plnk:role name="WorkforceReputationMetricServiceProvider">
+            <plnk:portType name="tns:WorkforceReputationMetricService"/>
+        </plnk:role>
+        <plnk:role name="WorkforceReputationMetricServiceRequestor">
+            <plnk:portType name="tns:WorkforceReputationMetricServiceResponse"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://xmlns.oracle.com/adf/svc/errors/" location="classpath:/META-INF/wsdl/ServiceException.wsdl"/>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0" schemaLocation="classpath:/META-INF/oracle-webservices-async-fault-11_0.xsd"/>
+            <import namespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/" schemaLocation="WorkforceReputationMetricService.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="WorkforceReputationMetricService_onFault">
+        <wsdl:part name="parameters" element="orafault:Fault"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRPostsAnalyzedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getHWRPostsAnalyzedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getIssuesCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getIssuesCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRIssuesCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getHWRIssuesCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getCandidatesAddedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getCandidatesAddedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getRegisteredEmployeeCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getRegisteredEmployeeCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRProfilesAddedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getHWRProfilesAddedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getPostsAnalyzedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getPostsAnalyzedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getProfilesAddedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getProfilesAddedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRCandidatesAddedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getHWRCandidatesAddedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWREmployeesAddedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getHWREmployeesAddedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRRegisteredEmployeeCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getHWRRegisteredEmployeeCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getEmployeesAddedCountAsyncResponse">
+        <wsdl:part name="parameters" element="types:getEmployeesAddedCountAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getRegisteredEmployeeCount">
+        <wsdl:part name="parameters" element="types:getRegisteredEmployeeCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getRegisteredEmployeeCountResponse">
+        <wsdl:part name="parameters" element="types:getRegisteredEmployeeCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getProfilesAddedCount">
+        <wsdl:part name="parameters" element="types:getProfilesAddedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getProfilesAddedCountResponse">
+        <wsdl:part name="parameters" element="types:getProfilesAddedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getPostsAnalyzedCount">
+        <wsdl:part name="parameters" element="types:getPostsAnalyzedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getPostsAnalyzedCountResponse">
+        <wsdl:part name="parameters" element="types:getPostsAnalyzedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getIssuesCount">
+        <wsdl:part name="parameters" element="types:getIssuesCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getIssuesCountResponse">
+        <wsdl:part name="parameters" element="types:getIssuesCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getEmployeesAddedCount">
+        <wsdl:part name="parameters" element="types:getEmployeesAddedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getEmployeesAddedCountResponse">
+        <wsdl:part name="parameters" element="types:getEmployeesAddedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getCandidatesAddedCount">
+        <wsdl:part name="parameters" element="types:getCandidatesAddedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getCandidatesAddedCountResponse">
+        <wsdl:part name="parameters" element="types:getCandidatesAddedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRRegisteredEmployeeCount">
+        <wsdl:part name="parameters" element="types:getHWRRegisteredEmployeeCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRRegisteredEmployeeCountResponse">
+        <wsdl:part name="parameters" element="types:getHWRRegisteredEmployeeCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRProfilesAddedCount">
+        <wsdl:part name="parameters" element="types:getHWRProfilesAddedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRProfilesAddedCountResponse">
+        <wsdl:part name="parameters" element="types:getHWRProfilesAddedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRPostsAnalyzedCount">
+        <wsdl:part name="parameters" element="types:getHWRPostsAnalyzedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRPostsAnalyzedCountResponse">
+        <wsdl:part name="parameters" element="types:getHWRPostsAnalyzedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRIssuesCount">
+        <wsdl:part name="parameters" element="types:getHWRIssuesCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRIssuesCountResponse">
+        <wsdl:part name="parameters" element="types:getHWRIssuesCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWREmployeesAddedCount">
+        <wsdl:part name="parameters" element="types:getHWREmployeesAddedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWREmployeesAddedCountResponse">
+        <wsdl:part name="parameters" element="types:getHWREmployeesAddedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRCandidatesAddedCount">
+        <wsdl:part name="parameters" element="types:getHWRCandidatesAddedCount"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRCandidatesAddedCountResponse">
+        <wsdl:part name="parameters" element="types:getHWRCandidatesAddedCountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRPostsAnalyzedCountAsync">
+        <wsdl:part name="parameters" element="types:getHWRPostsAnalyzedCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getIssuesCountAsync">
+        <wsdl:part name="parameters" element="types:getIssuesCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRIssuesCountAsync">
+        <wsdl:part name="parameters" element="types:getHWRIssuesCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getCandidatesAddedCountAsync">
+        <wsdl:part name="parameters" element="types:getCandidatesAddedCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getRegisteredEmployeeCountAsync">
+        <wsdl:part name="parameters" element="types:getRegisteredEmployeeCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRProfilesAddedCountAsync">
+        <wsdl:part name="parameters" element="types:getHWRProfilesAddedCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getPostsAnalyzedCountAsync">
+        <wsdl:part name="parameters" element="types:getPostsAnalyzedCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getProfilesAddedCountAsync">
+        <wsdl:part name="parameters" element="types:getProfilesAddedCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRCandidatesAddedCountAsync">
+        <wsdl:part name="parameters" element="types:getHWRCandidatesAddedCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWREmployeesAddedCountAsync">
+        <wsdl:part name="parameters" element="types:getHWREmployeesAddedCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getHWRRegisteredEmployeeCountAsync">
+        <wsdl:part name="parameters" element="types:getHWRRegisteredEmployeeCountAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationMetricService_getEmployeesAddedCountAsync">
+        <wsdl:part name="parameters" element="types:getEmployeesAddedCountAsync"/>
+    </wsdl:message>
+    <wsdl:portType name="WorkforceReputationMetricServiceResponse">
+        <wsdl:operation name="onFault">
+            <wsdl:input message="tns:WorkforceReputationMetricService_onFault" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0/Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRPostsAnalyzedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRPostsAnalyzedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRPostsAnalyzedCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getIssuesCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getIssuesCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getIssuesCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRIssuesCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRIssuesCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRIssuesCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCandidatesAddedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getCandidatesAddedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getCandidatesAddedCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getRegisteredEmployeeCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getRegisteredEmployeeCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getRegisteredEmployeeCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRProfilesAddedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRProfilesAddedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRProfilesAddedCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPostsAnalyzedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getPostsAnalyzedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getPostsAnalyzedCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getProfilesAddedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getProfilesAddedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getProfilesAddedCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRCandidatesAddedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRCandidatesAddedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRCandidatesAddedCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWREmployeesAddedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWREmployeesAddedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWREmployeesAddedCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRRegisteredEmployeeCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRRegisteredEmployeeCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRRegisteredEmployeeCountAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getEmployeesAddedCountAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getEmployeesAddedCountAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getEmployeesAddedCountAsyncResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="WorkforceReputationMetricService">
+        <wsdl:documentation/>
+        <wsdl:operation name="getRegisteredEmployeeCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getRegisteredEmployeeCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getRegisteredEmployeeCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getProfilesAddedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getProfilesAddedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getProfilesAddedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPostsAnalyzedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getPostsAnalyzedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getPostsAnalyzedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getIssuesCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getIssuesCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getIssuesCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getEmployeesAddedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getEmployeesAddedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getEmployeesAddedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCandidatesAddedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getCandidatesAddedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getCandidatesAddedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRRegisteredEmployeeCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRRegisteredEmployeeCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getHWRRegisteredEmployeeCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRProfilesAddedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRProfilesAddedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getHWRProfilesAddedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRPostsAnalyzedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRPostsAnalyzedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getHWRPostsAnalyzedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRIssuesCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRIssuesCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getHWRIssuesCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWREmployeesAddedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWREmployeesAddedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getHWREmployeesAddedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRCandidatesAddedCount">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRCandidatesAddedCount"/>
+            <wsdl:output message="tns:WorkforceReputationMetricService_getHWRCandidatesAddedCountResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRPostsAnalyzedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRPostsAnalyzedCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRPostsAnalyzedCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getIssuesCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getIssuesCountAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getIssuesCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRIssuesCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRIssuesCountAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRIssuesCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCandidatesAddedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getCandidatesAddedCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getCandidatesAddedCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getRegisteredEmployeeCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getRegisteredEmployeeCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getRegisteredEmployeeCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRProfilesAddedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRProfilesAddedCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRProfilesAddedCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPostsAnalyzedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getPostsAnalyzedCountAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getPostsAnalyzedCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getProfilesAddedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getProfilesAddedCountAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getProfilesAddedCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRCandidatesAddedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRCandidatesAddedCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRCandidatesAddedCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWREmployeesAddedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWREmployeesAddedCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWREmployeesAddedCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRRegisteredEmployeeCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getHWRRegisteredEmployeeCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRRegisteredEmployeeCountAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getEmployeesAddedCountAsync">
+            <wsdl:input message="tns:WorkforceReputationMetricService_getEmployeesAddedCountAsync"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getEmployeesAddedCountAsync"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WorkforceReputationMetricServiceSoapHttp" type="tns:WorkforceReputationMetricService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getRegisteredEmployeeCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getRegisteredEmployeeCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getProfilesAddedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getProfilesAddedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPostsAnalyzedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getPostsAnalyzedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getIssuesCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getIssuesCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getEmployeesAddedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getEmployeesAddedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getCandidatesAddedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getCandidatesAddedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRRegisteredEmployeeCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRRegisteredEmployeeCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRProfilesAddedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRProfilesAddedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRPostsAnalyzedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRPostsAnalyzedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRIssuesCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRIssuesCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHWREmployeesAddedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWREmployeesAddedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRCandidatesAddedCount">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRCandidatesAddedCount"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRPostsAnalyzedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRPostsAnalyzedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getIssuesCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getIssuesCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRIssuesCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRIssuesCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getCandidatesAddedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getCandidatesAddedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getRegisteredEmployeeCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getRegisteredEmployeeCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRProfilesAddedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRProfilesAddedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getPostsAnalyzedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getPostsAnalyzedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getProfilesAddedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getProfilesAddedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRCandidatesAddedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRCandidatesAddedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWREmployeesAddedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWREmployeesAddedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRRegisteredEmployeeCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRRegisteredEmployeeCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getEmployeesAddedCountAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getEmployeesAddedCountAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="WorkforceReputationMetricServiceResponseBinding" type="tns:WorkforceReputationMetricServiceResponse">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="onFault">
+            <soap:operation soapAction="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0/Fault"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRPostsAnalyzedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRPostsAnalyzedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getIssuesCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getIssuesCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRIssuesCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRIssuesCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getCandidatesAddedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getCandidatesAddedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getRegisteredEmployeeCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getRegisteredEmployeeCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRProfilesAddedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRProfilesAddedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getPostsAnalyzedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getPostsAnalyzedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getProfilesAddedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getProfilesAddedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRCandidatesAddedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRCandidatesAddedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWREmployeesAddedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWREmployeesAddedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getHWRRegisteredEmployeeCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getHWRRegisteredEmployeeCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getEmployeesAddedCountAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getEmployeesAddedCountAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WorkforceReputationMetricService">
+        <wsdl:port name="WorkforceReputationMetricServiceSoapHttpPort" binding="tns:WorkforceReputationMetricServiceSoapHttp">
+            <soap:address location="http://localhost:7101/hwr/WorkforceReputationMetricService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

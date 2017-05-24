@@ -1,0 +1,18 @@
+<assembly>
+	<id>common</id>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<formats>
+		<format>jar</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>${project.build.directory}/dist/common</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>**/**</include>
+			</includes>
+			<excludes>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</assembly>

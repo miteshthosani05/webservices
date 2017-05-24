@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webservices xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/javaee_web_services_1_2.xsd" version="1.2">
+  <webservice-description>
+    <webservice-description-name>{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}WorkforceReputationService</webservice-description-name>
+    <wsdl-file>WEB-INF/wsdl/oracle/apps/hcm/hwr/coreService/WorkforceReputationService.wsdl</wsdl-file>
+    <jaxrpc-mapping-file/>
+    <port-component>
+      <port-component-name>WorkforceReputationService</port-component-name>
+      <wsdl-service xmlns:ns0="http://xmlns.oracle.com/apps/hcm/hwr/coreService/">ns0:WorkforceReputationService</wsdl-service>
+      <wsdl-port xmlns:ns1="http://xmlns.oracle.com/apps/hcm/hwr/coreService/">ns1:WorkforceReputationServiceSoapHttpPort</wsdl-port>
+      <enable-mtom>false</enable-mtom>
+      <service-endpoint-interface>oracle.apps.hcm.hwr.coreService.WorkforceReputationService</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>oracle.apps.hcm.hwr.coreService.applicationModule.server.WorkforceReputationServiceImpl</servlet-link>
+      </service-impl-bean>
+    </port-component>
+  </webservice-description>
+</webservices>

@@ -1,0 +1,755 @@
+<wsdl:definitions
+     name="WorkforceReputationService"
+     targetNamespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:errors="http://xmlns.oracle.com/adf/svc/errors/"
+     xmlns:orafault="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/apps/hcm/hwr/coreService/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:types="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/"
+    >
+    <wsdl:documentation xmlns:oer="http://xmlns.oracle.com/oer">
+        <name>
+            Workforce Reputation Service
+        </name>
+        <description>
+            Workforce Reputation Service
+        </description>
+        <docCategories>
+            <category>
+                External
+            </category>
+        </docCategories>
+        <oer:lifecycle>
+            Active
+        </oer:lifecycle>
+        <oer:compatibility>
+            Supported - Backward Compatibility Assured
+        </oer:compatibility>
+        <oer:operation name="pollForJob">
+            <description>
+                To poll for a job
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="WLA"
+                               description="Details required to poll for job"/>
+                <oer:return description="Serialized reponse"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="updateJobProgress">
+            <description>
+                To update job progress
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="JobId"
+                               description="JobId that needs to be updated"/>
+                <oer:return description="Serialized response"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="writeConnectorData">
+            <description>
+                To write conncetor data
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="DataWriter" description="Data writer"/>
+                <oer:return description="Serialized reponse"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="mergePersonaSyncData">
+            <description>
+                To merge persona sync data
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="PersonaSyncdata"
+                               description="Persona sync data"/>
+                <oer:return description="Serilaized response"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="registerUser">
+            <description>
+                To register a user
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="PersonaSyncdata"
+                               description="Persona sync data of user"/>
+                <oer:return description="Returns serialized string"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="initializeWLA">
+            <description>
+                To intialize WLA
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="initializationInformation"
+                               description="Details required to intialize WLA"/>
+                <oer:return description="Serilaized response"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getUserProfile">
+            <description>
+                To get user profile
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="profileInformation"
+                               description="Profile inforamaton"/>
+                <oer:return description="Serilaized response"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getMyEndorsements">
+            <description>
+                Get My Endorsements
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pGlobalProfileId"
+                               description="Global Profile ID"/>
+                <oer:return description="Return Endorsements"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="getUserToEndorse">
+            <description>
+                Get Uset to Endorse
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pGlobalProfileIds"
+                               description="Global Profiel ID"/>
+                <oer:return description="Return User"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="searchUserToEndorse">
+            <description>
+                Search User to Endorse
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pSearchCriteria"
+                               description="Search Criteria"/>
+                <oer:return description="User to Endorse"/>
+            </oer:parameters>
+        </oer:operation>
+        <oer:operation name="EndorseUser">
+            <description>
+                To endorse a User
+            </description>
+            <oer:lifecycle>
+                Active
+            </oer:lifecycle>
+            <oer:parameters>
+                <oer:parameter name="pEndorsement" description="Endorsement"/>
+                <oer:return description="Endorsement User"/>
+            </oer:parameters>
+        </oer:operation>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="WorkforceReputationService">
+        <plnk:role name="WorkforceReputationServiceProvider">
+            <plnk:portType name="tns:WorkforceReputationService"/>
+        </plnk:role>
+        <plnk:role name="WorkforceReputationServiceRequestor">
+            <plnk:portType name="tns:WorkforceReputationServiceResponse"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://xmlns.oracle.com/adf/svc/errors/" location="classpath:/META-INF/wsdl/ServiceException.wsdl"/>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0" schemaLocation="classpath:/META-INF/oracle-webservices-async-fault-11_0.xsd"/>
+            <import namespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/" schemaLocation="WorkforceReputationService.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="WorkforceReputationService_onFault">
+        <wsdl:part name="parameters" element="orafault:Fault"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_mergePersonaSyncDataAsyncResponse">
+        <wsdl:part name="parameters" element="types:mergePersonaSyncDataAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_updateJobProgressAsyncResponse">
+        <wsdl:part name="parameters" element="types:updateJobProgressAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_pollForJobAsyncResponse">
+        <wsdl:part name="parameters" element="types:pollForJobAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_writeConnectorDataAsyncResponse">
+        <wsdl:part name="parameters" element="types:writeConnectorDataAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_registerUserAsyncResponse">
+        <wsdl:part name="parameters" element="types:registerUserAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_initializeWLAAsyncResponse">
+        <wsdl:part name="parameters" element="types:initializeWLAAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserProfileAsyncResponse">
+        <wsdl:part name="parameters" element="types:getUserProfileAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_searchUserToEndorseAsyncResponse">
+        <wsdl:part name="parameters" element="types:searchUserToEndorseAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_EndorseUserAsyncResponse">
+        <wsdl:part name="parameters" element="types:EndorseUserAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserToEndorseAsyncResponse">
+        <wsdl:part name="parameters" element="types:getUserToEndorseAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getMyEndorsementsAsyncResponse">
+        <wsdl:part name="parameters" element="types:getMyEndorsementsAsyncResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_pollForJob">
+        <wsdl:part name="parameters" element="types:pollForJob"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_pollForJobResponse">
+        <wsdl:part name="parameters" element="types:pollForJobResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_updateJobProgress">
+        <wsdl:part name="parameters" element="types:updateJobProgress"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_updateJobProgressResponse">
+        <wsdl:part name="parameters" element="types:updateJobProgressResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_writeConnectorData">
+        <wsdl:part name="parameters" element="types:writeConnectorData"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_writeConnectorDataResponse">
+        <wsdl:part name="parameters" element="types:writeConnectorDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_mergePersonaSyncData">
+        <wsdl:part name="parameters" element="types:mergePersonaSyncData"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_mergePersonaSyncDataResponse">
+        <wsdl:part name="parameters" element="types:mergePersonaSyncDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_registerUser">
+        <wsdl:part name="parameters" element="types:registerUser"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_registerUserResponse">
+        <wsdl:part name="parameters" element="types:registerUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_mergePersonaSyncDataAsync">
+        <wsdl:part name="parameters" element="types:mergePersonaSyncDataAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_updateJobProgressAsync">
+        <wsdl:part name="parameters" element="types:updateJobProgressAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_pollForJobAsync">
+        <wsdl:part name="parameters" element="types:pollForJobAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_writeConnectorDataAsync">
+        <wsdl:part name="parameters" element="types:writeConnectorDataAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_registerUserAsync">
+        <wsdl:part name="parameters" element="types:registerUserAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_initializeWLA">
+        <wsdl:part name="parameters" element="types:initializeWLA"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_initializeWLAResponse">
+        <wsdl:part name="parameters" element="types:initializeWLAResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserProfile">
+        <wsdl:part name="parameters" element="types:getUserProfile"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserProfileResponse">
+        <wsdl:part name="parameters" element="types:getUserProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_initializeWLAAsync">
+        <wsdl:part name="parameters" element="types:initializeWLAAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserProfileAsync">
+        <wsdl:part name="parameters" element="types:getUserProfileAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getMyEndorsements">
+        <wsdl:part name="parameters" element="types:getMyEndorsements"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getMyEndorsementsResponse">
+        <wsdl:part name="parameters" element="types:getMyEndorsementsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserToEndorse">
+        <wsdl:part name="parameters" element="types:getUserToEndorse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserToEndorseResponse">
+        <wsdl:part name="parameters" element="types:getUserToEndorseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_searchUserToEndorse">
+        <wsdl:part name="parameters" element="types:searchUserToEndorse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_searchUserToEndorseResponse">
+        <wsdl:part name="parameters" element="types:searchUserToEndorseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_EndorseUser">
+        <wsdl:part name="parameters" element="types:EndorseUser"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_EndorseUserResponse">
+        <wsdl:part name="parameters" element="types:EndorseUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_searchUserToEndorseAsync">
+        <wsdl:part name="parameters" element="types:searchUserToEndorseAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_EndorseUserAsync">
+        <wsdl:part name="parameters" element="types:EndorseUserAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getUserToEndorseAsync">
+        <wsdl:part name="parameters" element="types:getUserToEndorseAsync"/>
+    </wsdl:message>
+    <wsdl:message name="WorkforceReputationService_getMyEndorsementsAsync">
+        <wsdl:part name="parameters" element="types:getMyEndorsementsAsync"/>
+    </wsdl:message>
+    <wsdl:portType name="WorkforceReputationServiceResponse">
+        <wsdl:operation name="onFault">
+            <wsdl:input message="tns:WorkforceReputationService_onFault" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0/Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="mergePersonaSyncDataAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_mergePersonaSyncDataAsyncResponse"
+                 xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl" ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/mergePersonaSyncDataAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateJobProgressAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_updateJobProgressAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/updateJobProgressAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="pollForJobAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_pollForJobAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/pollForJobAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="writeConnectorDataAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_writeConnectorDataAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/writeConnectorDataAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="registerUserAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_registerUserAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/registerUserAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="initializeWLAAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_initializeWLAAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/initializeWLAAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUserProfileAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_getUserProfileAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserProfileAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchUserToEndorseAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_searchUserToEndorseAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/searchUserToEndorseAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="EndorseUserAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_EndorseUserAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/EndorseUserAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUserToEndorseAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_getUserToEndorseAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserToEndorseAsyncResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMyEndorsementsAsyncResponse">
+            <wsdl:input message="tns:WorkforceReputationService_getMyEndorsementsAsyncResponse" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getMyEndorsementsAsyncResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="WorkforceReputationService">
+        <wsdl:documentation/>
+        <wsdl:operation name="pollForJob">
+            <wsdl:input message="tns:WorkforceReputationService_pollForJob"/>
+            <wsdl:output message="tns:WorkforceReputationService_pollForJobResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateJobProgress">
+            <wsdl:input message="tns:WorkforceReputationService_updateJobProgress"/>
+            <wsdl:output message="tns:WorkforceReputationService_updateJobProgressResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="writeConnectorData">
+            <wsdl:input message="tns:WorkforceReputationService_writeConnectorData"/>
+            <wsdl:output message="tns:WorkforceReputationService_writeConnectorDataResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="mergePersonaSyncData">
+            <wsdl:input message="tns:WorkforceReputationService_mergePersonaSyncData"/>
+            <wsdl:output message="tns:WorkforceReputationService_mergePersonaSyncDataResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="registerUser">
+            <wsdl:input message="tns:WorkforceReputationService_registerUser"/>
+            <wsdl:output message="tns:WorkforceReputationService_registerUserResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="mergePersonaSyncDataAsync">
+            <wsdl:input message="tns:WorkforceReputationService_mergePersonaSyncDataAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/mergePersonaSyncDataAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateJobProgressAsync">
+            <wsdl:input message="tns:WorkforceReputationService_updateJobProgressAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/updateJobProgressAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="pollForJobAsync">
+            <wsdl:input message="tns:WorkforceReputationService_pollForJobAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/pollForJobAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="writeConnectorDataAsync">
+            <wsdl:input message="tns:WorkforceReputationService_writeConnectorDataAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/writeConnectorDataAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="registerUserAsync">
+            <wsdl:input message="tns:WorkforceReputationService_registerUserAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/registerUserAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="initializeWLA">
+            <wsdl:input message="tns:WorkforceReputationService_initializeWLA"/>
+            <wsdl:output message="tns:WorkforceReputationService_initializeWLAResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUserProfile">
+            <wsdl:input message="tns:WorkforceReputationService_getUserProfile"/>
+            <wsdl:output message="tns:WorkforceReputationService_getUserProfileResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="initializeWLAAsync">
+            <wsdl:input message="tns:WorkforceReputationService_initializeWLAAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/initializeWLAAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUserProfileAsync">
+            <wsdl:input message="tns:WorkforceReputationService_getUserProfileAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserProfileAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMyEndorsements">
+            <wsdl:input message="tns:WorkforceReputationService_getMyEndorsements"/>
+            <wsdl:output message="tns:WorkforceReputationService_getMyEndorsementsResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUserToEndorse">
+            <wsdl:input message="tns:WorkforceReputationService_getUserToEndorse"/>
+            <wsdl:output message="tns:WorkforceReputationService_getUserToEndorseResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchUserToEndorse">
+            <wsdl:input message="tns:WorkforceReputationService_searchUserToEndorse"/>
+            <wsdl:output message="tns:WorkforceReputationService_searchUserToEndorseResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="EndorseUser">
+            <wsdl:input message="tns:WorkforceReputationService_EndorseUser"/>
+            <wsdl:output message="tns:WorkforceReputationService_EndorseUserResponse"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchUserToEndorseAsync">
+            <wsdl:input message="tns:WorkforceReputationService_searchUserToEndorseAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/searchUserToEndorseAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="EndorseUserAsync">
+            <wsdl:input message="tns:WorkforceReputationService_EndorseUserAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/EndorseUserAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUserToEndorseAsync">
+            <wsdl:input message="tns:WorkforceReputationService_getUserToEndorseAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserToEndorseAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMyEndorsementsAsync">
+            <wsdl:input message="tns:WorkforceReputationService_getMyEndorsementsAsync" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getMyEndorsementsAsync"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WorkforceReputationServiceSoapHttp" type="tns:WorkforceReputationService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="pollForJob">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/pollForJob"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateJobProgress">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/updateJobProgress"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="writeConnectorData">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/writeConnectorData"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="mergePersonaSyncData">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/mergePersonaSyncData"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="registerUser">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/registerUser"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="mergePersonaSyncDataAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/mergePersonaSyncDataAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateJobProgressAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/updateJobProgressAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="pollForJobAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/pollForJobAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="writeConnectorDataAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/writeConnectorDataAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="registerUserAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/registerUserAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="initializeWLA">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/initializeWLA"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getUserProfile">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserProfile"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="initializeWLAAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/initializeWLAAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getUserProfileAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserProfileAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getMyEndorsements">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getMyEndorsements"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getUserToEndorse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserToEndorse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchUserToEndorse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/searchUserToEndorse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="EndorseUser">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/EndorseUser"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchUserToEndorseAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/searchUserToEndorseAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="EndorseUserAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/EndorseUserAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getUserToEndorseAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserToEndorseAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getMyEndorsementsAsync">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getMyEndorsementsAsync"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="WorkforceReputationServiceResponseBinding" type="tns:WorkforceReputationServiceResponse">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="onFault">
+            <soap:operation soapAction="http://xmlns.oracle.com/oracleas/schema/oracle-fault-11_0/Fault"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="mergePersonaSyncDataAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/mergePersonaSyncDataAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateJobProgressAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/updateJobProgressAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="pollForJobAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/pollForJobAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="writeConnectorDataAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/writeConnectorDataAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="registerUserAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/registerUserAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="initializeWLAAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/initializeWLAAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getUserProfileAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserProfileAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="searchUserToEndorseAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/searchUserToEndorseAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="EndorseUserAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/EndorseUserAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getUserToEndorseAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getUserToEndorseAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getMyEndorsementsAsyncResponse">
+            <soap:operation soapAction="http://xmlns.oracle.com/apps/hcm/hwr/coreService/getMyEndorsementsAsyncResponse"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WorkforceReputationService">
+        <wsdl:port name="WorkforceReputationServiceSoapHttpPort" binding="tns:WorkforceReputationServiceSoapHttp">
+            <soap:address location="http://localhost:7101/hwr/WorkforceReputationService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

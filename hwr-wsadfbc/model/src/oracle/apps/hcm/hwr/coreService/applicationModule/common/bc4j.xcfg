@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="oracle.apps.hcm.hwr.coreService.WorkforceReputationPublicServiceCore" name="WorkforceReputationPublicServiceAMLocal" ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM">
+         <Database jbo.locking.mode="optimistic" jbo.TypeMapEntries="oracle.apps.fnd.applcore.oaext.typemap.OATypeMapEntries"/>
+         <Security AppModuleJndiName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ApplicationDBDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="oracle.apps.hcm.hwr.coreService.WorkforceReputationPublicServiceCore" name="WorkforceReputationPublicServiceAMShared" ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"  jbo.TypeMapEntries="oracle.apps.fnd.applcore.oaext.typemap.OATypeMapEntries"/>
+         <Security AppModuleJndiName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ApplicationDBDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="WorkforceReputationService" ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM" jbo.project="oracle.apps.hcm.hwr.coreService.WorkforceReputationPublicServiceCore" DeployPlatform="SI">
+         <AM-Pooling jbo.ampool.resetnontransactionalstate="true"/>
+         <Database jbo.locking.mode="optimistic" jbo.TypeMapEntries="oracle.apps.fnd.applcore.oaext.typemap.OATypeMapEntries"/>
+         <Security AppModuleJndiName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationPublicServiceAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ApplicationServiceDBDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM">
+      <AppModuleConfig name="WorkforceReputationMetricServiceAMLocal" ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM" jbo.project="oracle.apps.hcm.hwr.coreService.WorkforceReputationPublicServiceCore" DeployPlatform="LOCAL">
+         <Database jbo.locking.mode="optimistic" jbo.TypeMapEntries="oracle.apps.fnd.applcore.oaext.typemap.OATypeMapEntries"/>
+         <Security AppModuleJndiName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ApplicationDBDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="WorkforceReputationMetricServiceAMShared" ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM" jbo.project="oracle.apps.hcm.hwr.coreService.WorkforceReputationPublicServiceCore" DeployPlatform="LOCAL">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.locking.mode="optimistic" jbo.TypeMapEntries="oracle.apps.fnd.applcore.oaext.typemap.OATypeMapEntries"/>
+         <Security AppModuleJndiName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ApplicationDBDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="SI" jbo.project="oracle.apps.hcm.hwr.coreService.WorkforceReputationPublicServiceCore" name="WorkforceReputationMetricService" ApplicationName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.resetnontransactionalstate="true"/>
+         <Database jbo.TypeMapEntries="oracle.apps.fnd.applcore.oaext.typemap.OATypeMapEntries" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="oracle.apps.hcm.hwr.coreService.applicationModule.WorkforceReputationMetricServiceAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ApplicationServiceDBDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

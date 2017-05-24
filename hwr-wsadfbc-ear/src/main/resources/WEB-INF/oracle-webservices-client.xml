@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oracle-jrf-webservices-client version="11.1.1.2">
+    <service-ref-mapping name="oracle.apps.hcm.hwr.coreService.applicationModule.server.WorkforceReputationServiceImpl/_oracleAsyncResponseClient">
+        <service-qname xmlns:ns2="oracle-apps-hcm-hwr-coreService-applicationModule-server-WorkforceReputationServiceImpl-_oracleAsyncResponseClient">ns2:oracle-apps-hcm-hwr-coreService-applicationModule-server-WorkforceReputationServiceImpl-_oracleAsyncResponseClient</service-qname>
+        <policy-references metadata-complete="true">
+            <policy-reference category="security" uri="oracle/wss11_saml_token_with_message_protection_client_policy" enabled="true"/>
+        </policy-references>
+    </service-ref-mapping>
+</oracle-jrf-webservices-client>

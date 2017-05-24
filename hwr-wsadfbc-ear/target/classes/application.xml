@@ -1,0 +1,16 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" version="5" xmlns="http://java.sun.com/xml/ns/javaee">
+  <display-name>Workforce Reputation Management Services</display-name>
+  <module>
+    <ejb>WorkforceReputationPublicServiceCore-2.0.0-SNAPSHOT-ejb.jar</ejb>
+  </module>
+<module>
+    <web>
+      <web-uri>hwr</web-uri>
+      <context-root>hwr</context-root>
+    </web>
+  </module>
+  <security-role>
+    <description>Admin</description>
+    <role-name>Admin</role-name>
+  </security-role>
+</application>

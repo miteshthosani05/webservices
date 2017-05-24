@@ -1,0 +1,342 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/"
+     xmlns:tns="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/" xmlns:ns0="http://xmlns.oracle.com/apps/hcm/hwr/coreService/"
+     xmlns:ns1="http://xmlns.oracle.com/adf/svc/errors/">
+    <import namespace="http://xmlns.oracle.com/adf/svc/errors/" schemaLocation="classpath:/META-INF/wsdl/ServiceException.xsd"/>
+    <import namespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/" schemaLocation="MetricResponseServiceData.xsd"/>
+    <element name="getRegisteredEmployeeCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getRegisteredEmployeeCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getProfilesAddedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getProfilesAddedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getPostsAnalyzedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getPostsAnalyzedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getIssuesCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getIssuesCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getEmployeesAddedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getEmployeesAddedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getCandidatesAddedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getCandidatesAddedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRRegisteredEmployeeCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRRegisteredEmployeeCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRProfilesAddedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRProfilesAddedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRPostsAnalyzedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRPostsAnalyzedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRIssuesCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRIssuesCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWREmployeesAddedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWREmployeesAddedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRCandidatesAddedCount">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRCandidatesAddedCountResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRPostsAnalyzedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRPostsAnalyzedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getIssuesCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getIssuesCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRIssuesCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRIssuesCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getCandidatesAddedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getCandidatesAddedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getRegisteredEmployeeCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getRegisteredEmployeeCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRProfilesAddedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRProfilesAddedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getPostsAnalyzedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getPostsAnalyzedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getProfilesAddedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getProfilesAddedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRCandidatesAddedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRCandidatesAddedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWREmployeesAddedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWREmployeesAddedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRRegisteredEmployeeCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getHWRRegisteredEmployeeCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getEmployeesAddedCountAsync">
+        <complexType>
+            <sequence>
+                <element name="pTimePeriod" type="long"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getEmployeesAddedCountAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:MetricResponseServiceData"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

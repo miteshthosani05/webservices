@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oracle-webservices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/11/oracle-webservices-11_1.xsd" schema-major-version="11" schema-minor-version="1">
+  <context-root>hwr</context-root>
+  <webservice-description name="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}WorkforceReputationService">
+    <expose-wsdl>true</expose-wsdl>
+    <expose-testpage>true</expose-testpage>
+    <schema-file-mappings>
+      <schema-file-mapping advertisedName="/xml/sdoModel.xsd" path="/xml/sdoModel.xsd"/>
+      <schema-file-mapping advertisedName="/META-INF/oracle-webservices-async-fault-11_0.xsd" path="/META-INF/oracle-webservices-async-fault-11_0.xsd"/>
+      <schema-file-mapping advertisedName="/xml/datagraph.xsd" path="/xml/datagraph.xsd"/>
+      <schema-file-mapping advertisedName="/xml/sdoJava.xsd" path="/xml/sdoJava.xsd"/>
+      <schema-file-mapping advertisedName="/oracle/apps/hcm/hwr/coreService/WorkforceReputationService.xsd" path="/oracle/apps/hcm/hwr/coreService/WorkforceReputationService.xsd"/>
+      <schema-file-mapping advertisedName="/META-INF/wsdl/ServiceException.xsd" path="/META-INF/wsdl/ServiceException.xsd"/>
+    </schema-file-mappings>
+    <port-component name="WorkforceReputationService" enabled="true" schemaValidateInput="false">
+      <async>
+          <system-user>FUSION_APPS_HCM_ASYNC_WS_APPID</system-user>
+          <request-jms-address jndiConnectionFactoryName="aqjms/AsyncWSAQConnectionFactory" jndiDestinationName="oracle.j2ee.ws.server.async.AQRequestQueue" enableTransaction="false" transactionTimeoutSeconds="0" messageProcessorInitialPoolSize="1" messageProcessorMaxPoolSize="2" messageSelector=":7e015aff-d39a-4f89-9cf9-7331c7ec7f42_Request"/>
+          <response-jms-address jndiConnectionFactoryName="aqjms/AsyncWSAQConnectionFactory" jndiDestinationName="oracle.j2ee.ws.server.async.AQResponseQueue" enableTransaction="false" enable="true" messageProcessorInitialPoolSize="1" messageProcessorMaxPoolSize="2" messageSelector=":7e015aff-d39a-4f89-9cf9-7331c7ec7f42_Response"/>
+          <response>
+             <port-type xmlns:ns2="http://xmlns.oracle.com/apps/hcm/hwr/coreService/">ns2:WorkforceReputationServiceResponse</port-type>
+             <service-ref-name>oracle.apps.hcm.hwr.coreService.applicationModule.server.WorkforceReputationServiceImpl/_oracleAsyncResponseClient</service-ref-name>
+          </response>
+      </async>
+      <mtom-support threshold="0">false</mtom-support>
+      <endpoint-address-uri>/WorkforceReputationService</endpoint-address-uri>
+      <policy-references metadata-complete="true">
+        <policy-reference category="security" uri="oracle/wss11_saml_or_username_token_with_message_protection_service_policy" enabled="true"/>
+
+      </policy-references>
+      <operations>
+        <operation name="pollForJobAsync" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}pollForJobAsyncInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}pollForJobAsyncOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}pollForJobAsync" use="literal"/>
+        <operation name="registerUser" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}registerUserInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}registerUserOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}registerUser" use="literal"/>
+        <operation name="updateJobProgress" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}updateJobProgressInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}updateJobProgressOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}updateJobProgress" use="literal"/>
+        <operation name="pollForJob" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}pollForJobInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}pollForJobOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}pollForJob" use="literal"/>
+        <operation name="registerUserAsync" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}registerUserAsyncInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}registerUserAsyncOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}registerUserAsync" use="literal"/>
+        <operation name="writeConnectorDataAsync" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}writeConnectorDataAsyncInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}writeConnectorDataAsyncOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}writeConnectorDataAsync" use="literal"/>
+        <operation name="updateJobProgressAsync" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}updateJobProgressAsyncInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}updateJobProgressAsyncOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}updateJobProgressAsync" use="literal"/>
+        <operation name="writeConnectorData" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}writeConnectorDataInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}writeConnectorDataOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}writeConnectorData" use="literal"/>
+        <operation name="mergePersonaSyncDataAsync" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}mergePersonaSyncDataAsyncInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}mergePersonaSyncDataAsyncOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}mergePersonaSyncDataAsync" use="literal"/>
+        <operation name="mergePersonaSyncData" inputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}mergePersonaSyncDataInput" outputName="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/}mergePersonaSyncDataOutput" input="{http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/}mergePersonaSyncData" use="literal"/>
+      </operations>
+          </port-component>
+    <enable-mex>true</enable-mex>
+  </webservice-description>
+</oracle-webservices>

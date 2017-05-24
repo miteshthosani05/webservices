@@ -1,0 +1,312 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/"
+     xmlns:tns="http://xmlns.oracle.com/apps/hcm/hwr/coreService/types/" xmlns:ns0="http://xmlns.oracle.com/adf/svc/errors/">
+    <import namespace="http://xmlns.oracle.com/adf/svc/errors/" schemaLocation="classpath:/META-INF/wsdl/ServiceException.xsd"/>
+    <element name="pollForJob">
+        <complexType>
+            <sequence>
+                <element name="WLA" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="pollForJobResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateJobProgress">
+        <complexType>
+            <sequence>
+                <element name="JobId" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateJobProgressResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="writeConnectorData">
+        <complexType>
+            <sequence>
+                <element name="DataWriter" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="writeConnectorDataResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergePersonaSyncData">
+        <complexType>
+            <sequence>
+                <element name="PersonaSyncdata" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergePersonaSyncDataResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="registerUser">
+        <complexType>
+            <sequence>
+                <element name="PersonaSyncdata" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="registerUserResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergePersonaSyncDataAsync">
+        <complexType>
+            <sequence>
+                <element name="PersonaSyncdata" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergePersonaSyncDataAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateJobProgressAsync">
+        <complexType>
+            <sequence>
+                <element name="JobId" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateJobProgressAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="pollForJobAsync">
+        <complexType>
+            <sequence>
+                <element name="WLA" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="pollForJobAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="writeConnectorDataAsync">
+        <complexType>
+            <sequence>
+                <element name="DataWriter" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="writeConnectorDataAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="registerUserAsync">
+        <complexType>
+            <sequence>
+                <element name="PersonaSyncdata" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="registerUserAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="initializeWLA">
+        <complexType>
+            <sequence>
+                <element name="initializationInformation" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="initializeWLAResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserProfile">
+        <complexType>
+            <sequence>
+                <element name="profileInformation" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserProfileResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="initializeWLAAsync">
+        <complexType>
+            <sequence>
+                <element name="initializationInformation" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="initializeWLAAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserProfileAsync">
+        <complexType>
+            <sequence>
+                <element name="profileInformation" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserProfileAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getMyEndorsements">
+        <complexType>
+            <sequence>
+                <element name="pGlobalProfileId" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getMyEndorsementsResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserToEndorse">
+        <complexType>
+            <sequence>
+                <element name="pGlobalProfileIds" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserToEndorseResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="searchUserToEndorse">
+        <complexType>
+            <sequence>
+                <element name="pSearchCriteria" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="searchUserToEndorseResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="EndorseUser">
+        <complexType>
+            <sequence>
+                <element name="pEndorsement" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="EndorseUserResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="searchUserToEndorseAsync">
+        <complexType>
+            <sequence>
+                <element name="pSearchCriteria" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="searchUserToEndorseAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="EndorseUserAsync">
+        <complexType>
+            <sequence>
+                <element name="pEndorsement" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="EndorseUserAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserToEndorseAsync">
+        <complexType>
+            <sequence>
+                <element name="pGlobalProfileIds" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getUserToEndorseAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getMyEndorsementsAsync">
+        <complexType>
+            <sequence>
+                <element name="pGlobalProfileId" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getMyEndorsementsAsyncResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

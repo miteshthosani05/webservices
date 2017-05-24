@@ -1,0 +1,35 @@
+<jaxb:bindings version="2.1" 
+xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+jaxb:extensionBindingPrefixes="xjc"
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> 
+<!--
+<jaxb:bindings wsdlLocation="http://adc2103005.us.oracle.com:7101/hwr/WorkforceReputationPublicService?wsdl">
+ 	<jaxb:bindings node="//wsdl::wsdl:service[@name='WorkforceReputationPublicService']">
+ 	  <jaxb:class name="TestWorkforceReputationPublicService"/>
+	</jaxb:bindings>
+</jaxb:bindings>
+-->
+<!--
+<jaxb:bindings schemaLocation="http://adc2103005.us.oracle.com:7101/hwr/WorkforceReputationPublicService?XSD=/apps/hcm/hwr/coreService/WorkforceReputationPublicService.xsd">
+  <jaxb:schemaBindings>
+    <jaxb:package name="oracle.apps.hcm.hwr.ws.client.service"/>
+  </jaxb:schemaBindings>
+</jaxb:bindings> 
+
+<jaxb:bindings schemaLocation="http://adc2103005.us.oracle.com:7101/hwr/WorkforceReputationPublicService?XSD=/META-INF/wsdl/BC4JService.xsd">
+  <jaxb:schemaBindings>
+    <jaxb:package name="oracle.apps.hcm.hwr.ws.client.adf.bc4j.types"/>
+  </jaxb:schemaBindings>
+</jaxb:bindings> 
+<jaxb:bindings schemaLocation="http://adc2103005.us.oracle.com:7101/hwr/WorkforceReputationPublicService?XSD=/oracle/apps/hcm/hwr/coreService/UserInfo.xsd">
+  <jaxb:schemaBindings>
+    <jaxb:package name="oracle.apps.hcm.hwr.ws.client.user"/>
+  </jaxb:schemaBindings>
+</jaxb:bindings> 
+-->
+<jaxb:globalBindings generateElementProperty="false"> <xjc:simple /> </jaxb:globalBindings>
+
+</jaxb:bindings> 

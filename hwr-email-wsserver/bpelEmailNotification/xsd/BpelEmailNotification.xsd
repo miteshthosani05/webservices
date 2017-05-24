@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	targetNamespace="http://xmlns.oracle.com/Bpel_Email_Notification/Bpel_Email_Notification/BpelEmailNotification"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="process">
+		<complexType>
+			<sequence>
+				<element name="Email-ID" type="string"/>
+                                <element name="Subject" type="string"/>
+                                <element name="Body" type="string"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
